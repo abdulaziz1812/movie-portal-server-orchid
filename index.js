@@ -34,6 +34,12 @@ async function run() {
       const result = await cursor.toArray();
       res.send(result);
     });
+    
+    app.get("/featured-movies", async (req, res) => {
+      const cursor = movieCollection.find().sort({ rating: -1 }).limit(6); ;
+      const result = await cursor.toArray();
+      res.send(result);
+    });
 
     app.get("/movies/:id", async (req, res) => {
       const id = req.params.id;
