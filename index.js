@@ -92,7 +92,9 @@ async function run() {
     });
 
     app.get("/favorites", async (req, res) => {
-      const cursor = favoriteCollection.find();
+      const email = req.query.email
+      const query = { email: email };
+      const cursor = favoriteCollection.find(query);
       const result = await cursor.toArray();
       res.send(result);
     });
