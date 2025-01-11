@@ -34,9 +34,9 @@ async function run() {
       const result = await cursor.toArray();
       res.send(result);
     });
-    
+
     app.get("/featured-movies", async (req, res) => {
-      const cursor = movieCollection.find().sort({ rating: -1 }).limit(6); ;
+      const cursor = movieCollection.find().sort({ rating: -1 }).limit(6);
       const result = await cursor.toArray();
       res.send(result);
     });
@@ -59,7 +59,7 @@ async function run() {
       const id = req.params.id;
       const filter = { _id: new ObjectId(id) };
       const options = { upsert: true };
-      const updatedMovie = req.body
+      const updatedMovie = req.body;
       const movie = {
         $set: {
           poster: updatedMovie.poster,
@@ -92,20 +92,19 @@ async function run() {
     });
 
     app.get("/favorites", async (req, res) => {
-      const email = req.query.email
-      const query = { email: email };
+      const email = req.query.email;
+      const query = { email };
       const cursor = favoriteCollection.find(query);
       const result = await cursor.toArray();
       res.send(result);
     });
 
-    app.delete("/favorites/:id", async(req,res) =>{
-      const id =req.params.id
-      const query = {_id: new ObjectId(id)};
+    app.delete("/favorites/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
       const result = await favoriteCollection.deleteOne(query);
       res.send(result);
-    })
-   
+    });
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
