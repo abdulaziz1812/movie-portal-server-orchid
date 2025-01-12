@@ -5,7 +5,7 @@ This is the backend server for **ScreenBox**, a movie portal that allows users t
 ## Live API URL
 
 While this is the backend API, you can connect it to your frontend (React app). The server is running at:
-
+- `http://localhost:5000` for local development (you can change the port as needed).
 
 ## Features
 
